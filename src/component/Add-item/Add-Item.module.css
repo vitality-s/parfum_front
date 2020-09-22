@@ -1,0 +1,23 @@
+.form_item {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+}
+.form_item input, textarea {
+    padding: 3px;
+
+}
+.form_item label {
+    margin-bottom: 4px;
+}
+.form_item button {
+    background-color: royalblue;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    margin-top: 30px;
+}
+.form_item button:hover {
+    opacity: .8;
+    cursor: pointer;
+}

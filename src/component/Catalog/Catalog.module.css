@@ -1,0 +1,84 @@
+.container {
+    width: 900px;
+    background-color: white;
+    margin: 0 auto;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.4204);
+    border-radius: 3px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 5;
+}
+.menu_content {
+    display: flex;
+    box-sizing: border-box;
+    outline: currentColor none medium;
+    max-width: 100%;
+    margin: 0;
+    align-items: center;
+    background: black none repeat scroll;
+    color: white;
+    font-weight: initial;
+    font-size: 13px;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px;
+    padding: 5px;
+}
+.menu_burger button {
+    display: block;
+    transform-origin: 16px 11px;
+    float: left;
+    outline: 0;
+    border: 0;
+    padding: 10px;
+    background: none;
+}
+.menu_burger button {
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    color: white;
+}
+.menu_burger button:focus {
+    outline: 0;
+}
+span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    margin-bottom: 7px;
+    background-color: #fff;
+}
+
+.one {
+    transform: rotate(45deg) translate(7px, 7px);
+    width: 30px;
+    background-color: red;
+}
+.two {
+    opacity: 0;
+    pointer-events: none;
+}
+.three {
+    transform: rotate(-45deg) translate(4px, -3px);
+    background-color: red;
+    width: 30px;
+}
+.menu_burger button:hover {
+    opacity: 0.9;
+}
+.g {
+    background-color: #001698;
+}
+.example {
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 88;
+}
+.wrapper {
+    display: block;
+    height: 100%;
+}
+
+
+

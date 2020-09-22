@@ -1,0 +1,110 @@
+.menu_drop {
+    position: absolute;
+    top: 65px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 5555;
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    align-items: stretch;
+    margin-top: 0;
+    padding-top: 20px;
+    background-color: antiquewhite;
+    transform: translateX(-200%);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border: solid 1px black;
+}
+.nav a {
+    color: black;
+    text-align: left;
+    text-decoration: none;
+    padding: 15px;
+    line-height: 120%;
+    max-width: 100%;
+    display: block;
+
+}
+.nav a:hover {
+    opacity: .5;
+    font-size: 15px;
+}
+.active {
+    position: absolute;
+    top: 65px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 290;
+    display: block;
+    width: 270px;
+    max-width: 100%;
+    align-items: stretch;
+    margin-top: 0;
+    padding-top: 20px;
+    background-color: #e1e1e1;
+    transform: translateX(0);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border-top: black solid 1px;
+}
+.basketStatus {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    color: white;
+    background-color: orangered;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: baseline;
+    font-weight: bold;
+    padding: 2px;
+    position: absolute;
+    top: 11px;
+    left: 120px;
+}
+.basket {
+    position: relative;
+}
+.exitButton {
+    display: block;
+    width: 100%;
+    margin: 4px;
+    background-color: royalblue;
+    padding: 4px;
+    color: white;
+    text-align: center;
+}
+.exitButton:hover {
+    opacity: .8;
+}
+.photoUserBox {
+    background-color: #e1e1e1;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: baseline;
+    margin-bottom: 20px;
+    padding: 5px;
+    box-shadow: 0 6px 4px -4px rgba(0,0,0,.5);
+    box-sizing: border-box;
+}
+.photo {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    line-height: 40px;
+    margin: 8px;
+    font-size: 17px;
+}
+.fullname {
+    display: block;
+    max-width: 60%;
+    color: black;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}

@@ -1,0 +1,29 @@
+.filterBar {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border: solid 1px black;
+    align-items: center;
+    width: 100%;
+    padding: 7px;
+    box-sizing: border-box;
+    margin-top: 9px;
+
+}
+.filterItem {
+    color: black;
+    border: 1px solid black;
+    font-size: 10px;
+    padding: 8px;
+    margin-right: 8px;
+    width: 100px;
+}
+.search input{
+    padding: 3px;
+}
+.search {
+    margin-left: 80px;
+}
+.filterBox {
+    display: flex;
+}

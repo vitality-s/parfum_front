@@ -1,0 +1,32 @@
+.container {
+    display: block;
+    margin: 0 auto;
+    width: 500px;
+    height: 100%;
+    padding: 40px;
+}
+.authPage {
+    display: flex;
+    width: 500px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.4204);
+    border-radius: 3px;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100%/2);
+}
+
+.title {
+    text-align: center;
+}
+
+.register a {
+    color: darkcyan;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: .7;
+}
