@@ -16,7 +16,8 @@ import {
     setBasketThunkCreater
 } from "../../redux/redusers/basket";
 import WithRouterProfile from "../Profile/Profile";
-import {getProfileThunkCreater, setAuthDataAC} from "../../redux/redusers/auth";
+import {setAuthDataAC} from "../../redux/redusers/auth";
+import {getProfileThunkCreater} from "../../redux/redusers/profile";
 
 const filterBy = (card, filterValue, searchQuery) => {
     switch (filterValue) {
@@ -74,7 +75,7 @@ const mapStateToProps = (state) => {
         filterBy: state.card.filterBy,
         searchQuery: state.card.searchQuery,
         authData: state.auth.authData,
-        profile: state.auth.profile,
+        profileProduct: state.profileProduct.profileProduct,
         orders: state.basket.orders
     }
 }

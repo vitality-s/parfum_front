@@ -27,6 +27,9 @@ const MenuSlider = ({isOpen, basketData, authData, logoutUser}) => {
                         ) : ""}
                     </div>
                     <div>
+                        <NavLink to = '/own' >Управление[Demo]</NavLink>
+                    </div>
+                    <div>
                         {authData ? <button className={s.exitButton} onClick={handleClick}>
                             Выйти
                         </button> : <NavLink to = '/login'>Войти</NavLink> }

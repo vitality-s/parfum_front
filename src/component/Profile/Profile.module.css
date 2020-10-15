@@ -11,6 +11,16 @@
 .title {
     margin-bottom: 10px;
 }
+.navigation {
+    display: flex;
+    justify-content: space-between;
+}
+.back a {
+    display: block;
+    text-decoration: none;
+    color: cornflowerblue;
+    font-size: 14px;
+}
 .imageBar {
     display: flex;
     background-color: white;

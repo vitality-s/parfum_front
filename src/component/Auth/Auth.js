@@ -17,7 +17,7 @@ const Auth = (props) => {
                 <WithAuthFormik/>
                 <div className={s.register}>
                     <NavLink to = '/login'>
-                        Войти
+                        Войти в аккаунт
                     </NavLink>
                 </div>
             </div>

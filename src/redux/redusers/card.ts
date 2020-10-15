@@ -7,19 +7,40 @@ let filterBy = 'FILTER-BY'
 let setSearchValue = 'SET-SEARCH-VALUE'
 let removeCatalogItem = 'REMOVE-CATALOG-ITEM'
 
-let initiallState = {
-    cardData: null,
+export type CardDataType = {
+    _id: string
+    title: string
+    price: number
+    model: string
+        image: string
+        emblem: string
+        gender: string
+        descript: string
+        country: string
+        type: string
+        classific: string
+    start_note: string
+    end_node: string
+    isAdd: boolean
+}
+type InitiallStateType = {
+    cardData: Array<CardDataType>
+    filterBy: string | null
+    searchQuery: string | null
+}
+let initiallState: InitiallStateType = {
+    cardData: [],
     filterBy: "",
     searchQuery: ""
 }
 
-const cardReducer = (state = initiallState, action) => {
+const cardReducer = (state = initiallState, action: any): InitiallStateType => {
     switch (action.type) {
 
         case setCardData:
             return {
                 ...state,
-                cardData: action.payload
+                cardData: action.payload,
             }
         case filterBy:
             return {
@@ -61,55 +82,78 @@ const cardReducer = (state = initiallState, action) => {
             return state;
     }
 }
-
-export const setCardDataAC = (response) =>
+type SetCardDataType = {
+    type: typeof setCardData
+    payload: Array<CardDataType>
+}
+export const setCardDataAC = (response: Array<CardDataType>): SetCardDataType =>
     ({
         type: setCardData, payload: response
     });
-export const addBasketItemAC = (id) =>
+
+type AddBasketItemType = {
+    type: typeof addBasketItem
+    payload: string
+}
+export const addBasketItemAC = (id: string): AddBasketItemType =>
     ({
         type: addBasketItem, payload: id
     });
-export const removeBasketItemAC = (id) =>
+
+type RemoveBasketItemType = {
+    type: typeof removeBasketItem
+    payload: string
+}
+export const removeBasketItemAC = (id: string): RemoveBasketItemType =>
     ({
         type: removeBasketItem, payload: id
     });
-export const filterByAC = (filterValue) =>
+
+type FilterByType = {
+    type: typeof filterBy
+    payload: string
+}
+export const filterByAC = (filterValue: string): FilterByType =>
     ({
         type: filterBy, payload: filterValue
     });
-export const setSearchValueAC = (value, type) =>
+
+type SetSearchValueType = {
+    type: typeof setSearchValue
+    payload: {value: string, type: string}
+}
+export const setSearchValueAC = (value: string, type: string): SetSearchValueType =>
     ({
         type: setSearchValue, payload: {value, type}
     });
-export const removeCatalogItemAC = (id) =>
+
+type RemoveCatalogItemType = {
+    type: typeof removeCatalogItem
+    payload: string
+}
+export const removeCatalogItemAC = (id:string): RemoveCatalogItemType =>
     ({
         type: removeCatalogItem, payload: id
     });
 
 export const setCardThunkCreater = () => {
-    return (dispatch) => {
-        return api.cardData()
-            .then(response => {
-                if(response.status === 200 && response.data.length > 0) {
-                    dispatch(setCardDataAC(response.data))
-                }
-
-            })
+    return async (dispatch: any) => {
+        let response = await api.cardData()
+        if (response.status === 200 && response.data.length > 0) {
+            dispatch(setCardDataAC(response.data))
+        }
     }
 }
-export const removeCatalogItemThunkCreater = (id) => {
-    return (dispatch) => {
-        return api.removeCatalogItem(id)
-            .then(response => {
-                if(response.status === 200) {
-                    dispatch(removeCatalogItemAC(id))
-                }
-            })
-
+export const removeCatalogItemThunkCreater = (id: string) => {
+    return async (dispatch: any) => {
+        let response = await api.removeCatalogItem(id)
+        if (response.status === 200) {
+            dispatch(removeCatalogItemAC(id))
+        }
     }
 }
-export const addOwnCardThunkCreater = (data) => {
+export const addOwnCardThunkCreater = (data: any) => {
+
     const payload = {
         title: data.title,
         price: data.price,
@@ -140,15 +184,12 @@ export const addOwnCardThunkCreater = (data) => {
         ]
 
     }
-    return (dispatch) => {
-        return api.sendDataCard(payload)
-            .then(response => {
-                debugger
-                if(response.status === 200){
-                    alert("Товар добавлен")
-                    dispatch(setCardThunkCreater())
-                }
-            })
+    return async (dispatch: any) => {
+        let response = await api.sendDataCard(payload)
+        if (response.status === 200) {
+            alert("Товар добавлен")
+            dispatch(setCardThunkCreater())
+        }
     }
 }
 

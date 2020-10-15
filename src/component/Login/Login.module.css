@@ -16,15 +16,29 @@
     flex-direction: column;
     height: calc(100%/2);
 }
+.content {
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 .title {
     text-align: center;
 }
 
 .register a {
+    display: block;
     color: darkcyan;
     font-size: 12px;
     text-decoration: none;
+}
+.register {
+    display: flex;
+    width: calc(100% - 50px);
+    justify-content: space-between;
+    height: 100%;
+    align-items: flex-end;
 }
 
 a:hover {

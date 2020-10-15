@@ -10,14 +10,20 @@ const Login = (props) => {
     return (
         <div className={s.container}>
             <div className={s.authPage}>
-                <div className={s.title}>
-                    <h3>Войти в аккаунт</h3>
+                <div className={s.content}>
+                    <div className={s.title}>
+                        <h3>Войти в аккаунт</h3>
+                    </div>
+                    <WithFormikContainer/>
                 </div>
-                <WithFormikContainer/>
+
                 <div className={s.register}>
-                    <NavLink to = '/auth'>
+                    <div><NavLink to = '/auth'>
                         Зарегистрироваться
-                    </NavLink>
+                    </NavLink></div>
+                    <div><NavLink to = '/catalog'>
+                        Назад
+                    </NavLink></div>
                 </div>
             </div>
         </div>
