@@ -1,7 +1,6 @@
 import s from "./Menu-slider.module.css";
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {generateColor} from "../../../helpers/generateColor";
 import UserInfo from "../../UserInfo/UserInfo";
 
 const MenuSlider = ({isOpen, basketData, authData, logoutUser}) => {

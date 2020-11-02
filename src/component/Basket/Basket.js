@@ -1,7 +1,6 @@
 import React from "react";
 import s from './Basket.module.css'
 import {NavLink} from "react-router-dom";
-import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import {connect} from "react-redux";
 import {Empty} from "antd";
 import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
@@ -41,7 +40,7 @@ class Basket extends React.Component {
                         <div className={s.basketContent}>
                             {this.props.basketData.map((item) => {
                                 return (
-                                    <div className={s.basketBox}>
+                                    <div key={item._id} className={s.basketBox}>
                                         <div>
                                             <img src={"http://localhost:3012/" + item.image} alt=""/>
                                         </div>

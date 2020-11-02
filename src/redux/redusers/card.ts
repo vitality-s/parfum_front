@@ -40,7 +40,10 @@ const cardReducer = (state = initiallState, action: any): InitiallStateType => {
         case setCardData:
             return {
                 ...state,
-                cardData: action.payload,
+                cardData: [
+                    ...state.cardData,
+                    ...action.payload
+                ]
             }
         case filterBy:
             return {
@@ -136,9 +139,12 @@ export const removeCatalogItemAC = (id:string): RemoveCatalogItemType =>
         type: removeCatalogItem, payload: id
     });
 
-export const setCardThunkCreater = () => {
+export const setCardThunkCreater = (start = 0) => {
+    debugger
     return async (dispatch: any) => {
-        let response = await api.cardData()
+        debugger
+        let response = await api.cardData(start)
+        debugger
         if (response.status === 200 && response.data.length > 0) {
             dispatch(setCardDataAC(response.data))
         }

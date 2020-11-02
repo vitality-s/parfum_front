@@ -69,13 +69,13 @@ span {
 .g {
     background-color: #001698;
 }
-.example {
+.wrapper {
     display: block;
     width: 100%;
     height: 100%;
     z-index: 88;
 }
-.wrapper {
+.wrapper__card {
     display: block;
     height: 100%;
 }

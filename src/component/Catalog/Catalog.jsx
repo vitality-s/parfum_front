@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import s from './Catalog.module.css'
 import FilterBar from "../Filter-bar/FilterBar";
 import MenuButton from "../Menu/Menu-button/MenuButton";
@@ -9,11 +9,9 @@ import {
     setCardThunkCreater, setSearchValueAC
 } from "../../redux/redusers/card";
 import {BrowserRouter, Route} from "react-router-dom";
-import Profile from "../Profile/Profile";
 import {
     addBasketItemThunkCreater,
     removeBasketItemThunkCreater,
-    setBasketThunkCreater
 } from "../../redux/redusers/basket";
 import WithRouterProfile from "../Profile/Profile";
 import {setAuthDataAC} from "../../redux/redusers/auth";
@@ -51,10 +49,10 @@ class Catalog extends React.Component {
                     <FilterBar {...this.props}/>
                 </div>*/}
 
-                <div className={s.example}>
+                <div className={s.wrapper}>
                     <BrowserRouter>
                         <Route exact path= '/catalog' render={() =>
-                            <div className={s.wrapper}>
+                            <div className={s.wrapper__card}>
                                 <FilterBar {...this.props}/>
                                 <CardBox {...this.props}/>
                             </div>}/>
@@ -104,6 +102,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         getProfile: (id) => {
             dispatch(getProfileThunkCreater(id))
+        },
+        setCardData: (start) => {
+            dispatch(setCardThunkCreater(start))
         }
 
     }

@@ -26,7 +26,7 @@ class App extends React.Component {
                     <Route exact path='/' render={() =>
                         <Redirect to = '/catalog'/>}/>
                     <Route path='/catalog' render={() =>
-                        <CatalogContainer/>}/>
+                        <CatalogContainer />}/>
                     <Route exact path='/login' render={() =>
                         <Login/>}/>
                     <Route exact path='/auth' render={() =>

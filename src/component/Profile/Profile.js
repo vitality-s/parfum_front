@@ -1,7 +1,6 @@
 import React from "react";
 import s from './Profile.module.css'
 import {NavLink, withRouter} from "react-router-dom";
-import profileProductReducer from "../../redux/redusers/profile";
 
 class Profile extends React.Component {
     componentWillMount() {

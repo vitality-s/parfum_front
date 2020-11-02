@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {Empty} from "antd";
 import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
-import {removeCatalogItemThunkCreater, setCardThunkCreater} from "../../redux/redusers/card";
+import {removeCatalogItemThunkCreater} from "../../redux/redusers/card";
 import AddItemForm from "../Add-item/AddItemForm";
 import Photo from "../PhotoUser/Photo";
 import {removeOrderItemThunkCreater} from "../../redux/redusers/basket";
@@ -43,7 +43,7 @@ class Own extends React.Component {
                             {this.props.cardData && this.props.cardData.length !== 0 ?
                                 this.props.cardData.map((item) => {
                                     return (
-                                        <div className={s.itemBox}>
+                                        <div key={item._id} className={s.itemBox}>
                                             <div>
                                                 <img src={"http://localhost:3012/" + item.image} alt=""/>
                                             </div>
@@ -72,7 +72,7 @@ class Own extends React.Component {
                                 <Empty image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"/>
                             </div> : this.props.orders.map((item) => {
                                 return (
-                                    <div className={s.itemBox}>
+                                    <div key={item._id} className={s.itemBox}>
                                         <div>
                                             <Photo hash = {item.email} char = {item.name}/>
                                         </div>

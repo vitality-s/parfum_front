@@ -9,8 +9,8 @@ export let api = {
         axios.post(`http://localhost:3012/api/register`, data),
     loginData: (data) =>
         axios.post(`http://localhost:3012/api/login`, data),
-    cardData: () =>
-        axios.get(`http://localhost:3012/api/products`/*"http://localhost:3000/data.json"*/),
+    cardData: (start) =>
+        axios.get(`http://localhost:3012/api/products/${start}`/*"http://localhost:3000/data.json"*/),
     basketData: () =>
         instanse.get(`/basket.json`),
     fetch: (token) =>

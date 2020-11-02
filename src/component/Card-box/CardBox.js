@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import s from './Card-box.module.css'
 import {Empty} from 'antd';
 import {ShoppingCartOutlined} from "@ant-design/icons"
@@ -7,6 +7,7 @@ import * as classnames from "classnames";
 import {NavLink} from "react-router-dom";
 
 const CardBox = (props) => {
+    const boxRef = useRef()
     const [count, setCount] = useState(false)
     const priceOld = 1000;
     const addBasketItem = (item) => {
@@ -21,13 +22,24 @@ const CardBox = (props) => {
             setCount(false)
         }, 2000)
     }
+
+       const onScroll = (e) => {
+               const elem = e.target;
+               const condition = Math.ceil(elem.scrollTop) + elem.offsetHeight === elem.scrollHeight
+           debugger
+               if(condition) {
+                   props.setCardData(props.cardData.length + 1)
+               }
+               debugger
+           }
+
     return (
-        <div className={s.CardBox}>
+        <div className={s.CardBox} onScroll={(e) => {onScroll(e)}}>
             {!props.cardData || props.cardData.length === 0 ? (<div className={s.empty}>
                 <Empty image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"/>
             </div>) : (props.cardData.map(card => {
                 return (
-                    <div className={s.cardItem}>
+                    <div key={card._id} className={s.cardItem}>
                         <div className={s.cardImage}>
                             <img src={"http://localhost:3012/" + card.image} alt=""/>
                         </div>

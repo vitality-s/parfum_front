@@ -11,8 +11,8 @@ const MenuButton = (props) => {
         toggleMenu(!isOpen)
     }
     return (
-        <div className={s.menu_content}>
-            <div onClick={showMenu} className={s.menu_burger}>
+        <div className={s.menu}>
+            <div onClick={showMenu} className={s.menu__burger}>
                 <button>
                     <span className={isOpen && s.one}/>
                     <span className={isOpen && s.two}/>
@@ -20,7 +20,7 @@ const MenuButton = (props) => {
                 </button>
             </div>
 
-            <div className={s.menu_title}>
+            <div className={s.menu__title}>
                 <h3>La Parfumeria</h3>
             </div>
             <div className={s.unlockBox}>
@@ -33,7 +33,7 @@ const MenuButton = (props) => {
                     ): ""}
                 </div> : "" }
             </div>
-            <div className={s.menu_basket}>
+            <div className={s.menu__basket}>
                 <NavLink to = '/basket'><ShoppingCartOutlined/></NavLink>
                 {props.basketData.length && props.basketData.length > 0 ? (
                     <div className={s.basketStatus}>{props.basketData.length}</div>

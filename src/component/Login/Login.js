@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './Login.module.css'
-import {BrowserRouter, NavLink, Route} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import WithFormikContainer from "../MyForm/withFormik";
 
 const Login = (props) => {

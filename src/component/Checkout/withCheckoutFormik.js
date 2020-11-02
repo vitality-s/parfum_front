@@ -1,7 +1,6 @@
 import {withFormik} from 'formik'
 import CheckoutForm from "./CheckoutForm";
 import store from '../../redux/store'
-import {setAuthDataThunkCreater} from "../../redux/redusers/auth";
 import {setCheckDataThunkCreater} from "../../redux/redusers/basket";
 
 

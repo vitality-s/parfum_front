@@ -1,4 +1,4 @@
-.menu_content {
+.menu {
     display: flex;
     box-sizing: border-box;
     outline: currentColor none medium;
@@ -15,7 +15,7 @@
     /*position: relative;*/
     height: 100%;
 }
-.menu_burger button {
+.menu__burger button {
     display: block;
     transform-origin: 16px 11px;
     float: left;
@@ -24,11 +24,11 @@
     padding: 10px;
     background: none;
 }
-.menu_burger button {
+.menu__burger button {
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     color: white;
 }
-.menu_burger button:focus {
+.menu__burger button:focus {
     outline: 0;
 }
 span {
@@ -53,16 +53,16 @@ span {
     background-color: red;
     width: 30px;
 }
-.menu_burger button:hover {
+.menu__burger button:hover {
     opacity: 0.9;
 }
-.menu_basket a {
+.menu__basket a {
     text-decoration: none;
     font-size: 30px;
     display: inline-block;
     color: white;
 }
-.menu_basket {
+.menu__basket {
     display: block;
     position: relative;
 }

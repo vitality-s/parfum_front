@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './Auth.module.css'
-import {BrowserRouter, NavLink, Redirect, Route} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import WithAuthFormik from "../AuthForm/withAuthFormik";
 
 const Auth = (props) => {
