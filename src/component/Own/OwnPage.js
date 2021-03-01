@@ -1,27 +1,31 @@
 import React from 'react';
 import s from './Own.module.css'
 import {NavLink} from "react-router-dom";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Empty} from "antd";
 import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import {removeCatalogItemThunkCreater} from "../../redux/redusers/card";
-import AddItemForm from "../Add-item/AddItemForm";
 import Photo from "../PhotoUser/Photo";
 import {removeOrderItemThunkCreater} from "../../redux/redusers/basket";
 import SignupForm from "../Add-item/AddFormWithFormik";
+import {getCardData} from "../../selectors/catalogSelector";
+import {getOrders} from "../../selectors/basketSelector";
 
-class Own extends React.Component {
+const OwnPage = () => {
+    const dispatch = useDispatch()
+    const cardData = useSelector(getCardData)
+    const orders = useSelector(getOrders)
 
-    removeCatalogItem = (id) => {
+    const removeCatalogItem = (id) => {
         if (global.confirm('Ви действительно хотите удалить елемент из каталого?')) {
-            this.props.removeCatalogItem(id)
+            dispatch(removeCatalogItemThunkCreater(id))
         }
     }
-    removeOrderItem = (id) => {
-        this.props.removeOrderItem(id)
+    const removeOrderItem = (id) => {
+        dispatch(removeOrderItemThunkCreater(id))
     }
 
-    render() {
+
         return (
             <div className={s.container}>
                 <div className={s.menu_wrapper}>
@@ -41,8 +45,8 @@ class Own extends React.Component {
                     <div className={s.content_item}>
                         <div className={s.content_item_title}>Товари</div>
                         <div className={s.catalogBox}>
-                            {this.props.cardData && this.props.cardData.length !== 0 ?
-                                this.props.cardData.map((item) => {
+                            {cardData && cardData.length !== 0 ?
+                                cardData.map((item) => {
                                     return (
                                         <div key={item._id} className={s.itemBox}>
                                             <div>
@@ -53,7 +57,7 @@ class Own extends React.Component {
                                             </div>
                                             <div className={s.itemBox_delete}>
                                                 <button onClick={() => {
-                                                    this.removeCatalogItem(item._id)
+                                                    removeCatalogItem(item._id)
                                                 }}>
                                                     <DeleteOutlined/>
                                                 </button>
@@ -69,9 +73,9 @@ class Own extends React.Component {
                     <div className={s.content_item}>
                         <div className={s.content_item_title}>Закази</div>
                         <div className={s.orderbox}>
-                            {!this.props.orders || this.props.orders.length === 0 ? <div className={s.empty}>
+                            {!orders || orders.length === 0 ? <div className={s.empty}>
                                 <Empty image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"/>
-                            </div> : this.props.orders.map((item) => {
+                            </div> : orders.map((item) => {
                                 return (
                                     <div key={item._id} className={s.itemBox}>
                                         <div>
@@ -84,7 +88,7 @@ class Own extends React.Component {
                                             <div className={s.limit}>{"Сумма заказа: " + item.price}</div>
                                         </div>
                                         <div>
-                                            <button onClick={() => {this.removeOrderItem(item._id)}}>
+                                            <button onClick={() => {removeOrderItem(item._id)}}>
                                                 <DeleteOutlined/>
                                             </button>
                                         </div>
@@ -97,23 +101,7 @@ class Own extends React.Component {
                 </div>
             </div>
         )
-    }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        cardData: state.card.cardData,
-        orders: state.basket.orders
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        removeCatalogItem: (id) => {
-            dispatch(removeCatalogItemThunkCreater(id))
-        },
-        removeOrderItem: (id) => {
-            dispatch(removeOrderItemThunkCreater(id))
-        }
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Own);
+
+export default OwnPage

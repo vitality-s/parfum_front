@@ -91,7 +91,7 @@ const mapDispatchToProps = (dispatch) => {
         removeBasketItem: (item) => {
             dispatch(removeBasketItemThunkCreater(item))
         },
-        filterBy: (filterValue) => {
+        setFilterBy: (filterValue) => {
             dispatch(filterByAC(filterValue))
         },
         setSearchValue: (value, type) => {

@@ -21,3 +21,29 @@
     opacity: .8;
     cursor: pointer;
 }
+.errorFormLabel {
+    width: 100%;
+    padding: 5px;
+    color: white;
+    background: crimson;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.button {
+    height: 100%;
+    margin-bottom: 90px;
+}
+.field {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    margin-left: 3px;
+}
+.fieldTrue {
+    display: block;
+    color: red;
+    font-size: 20px;
+    position: absolute;
+    top: 1px;
+    left: -8px;
+}

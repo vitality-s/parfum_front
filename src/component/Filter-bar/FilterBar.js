@@ -1,9 +1,15 @@
 import s from "./Filter-bar.module.css"
-import React from "react";
+import React, {useEffect} from "react";
 import { Input } from 'antd';
+import { useHistory } from 'react-router-dom'
+import * as queryString from 'querystring'
+import {useDispatch} from "react-redux";
+import {filterByAC, setSearchValueAC} from "../../redux/redusers/card";
 
 const FilterBar = (props) => {
-    const { Search } = Input;
+    const history = useHistory()
+    const dispatch = useDispatch()
+    /*const {Search} = Input;
     const onSearch = (value) => {
         console.log(value)
     }
@@ -12,12 +18,43 @@ const FilterBar = (props) => {
             console.log("Error")
             return false
         }
-    }
+    }*/
+
+
+    useEffect(()=> {
+        history.push({
+            pathname: '/catalog',
+            search: `?gender=${props.filterBy}`
+        })
+    }, [props.filterBy])
+
+    useEffect(()=> {
+        history.push({
+            pathname: '/catalog',
+            search: `?search=${props.searchQuery}`
+        })
+    }, [props.searchQuery])
+
+
+    useEffect(() => {
+        const parsed = queryString.parse(history.location.search.substr(1))
+        if(parsed.search && parsed.search !== "") {
+            dispatch(setSearchValueAC(parsed.search, "Марка"))
+        }
+        if(parsed.gender && parsed.gender !== "") {
+            dispatch(filterByAC(parsed.gender))
+        }
+        debugger
+    }, [])
+
+
     const filterBy = (filterValue) => {
-        props.filterBy(filterValue)
+        dispatch(filterByAC(filterValue))
+
+debugger
     }
     const setSearchValue = (searchValue) => {
-        props.setSearchValue(searchValue, "Марка")
+        dispatch(setSearchValueAC(searchValue, "Марка"))
     }
 
     return (

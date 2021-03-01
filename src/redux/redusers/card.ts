@@ -6,13 +6,14 @@ let removeBasketItem = 'REMOVE-BASKET-ITEM'
 let filterBy = 'FILTER-BY'
 let setSearchValue = 'SET-SEARCH-VALUE'
 let removeCatalogItem = 'REMOVE-CATALOG-ITEM'
+let addCardData = 'ADD-CARD-DATA'
 
 export type CardDataType = {
     _id: string
     title: string
     price: number
     model: string
-        image: string
+        image: string | any
         emblem: string
         gender: string
         descript: string
@@ -21,7 +22,7 @@ export type CardDataType = {
         classific: string
     start_note: string
     end_node: string
-    isAdd: boolean
+    isAdd?: boolean
 }
 type InitiallStateType = {
     cardData: Array<CardDataType>
@@ -36,7 +37,14 @@ let initiallState: InitiallStateType = {
 
 const cardReducer = (state = initiallState, action: any): InitiallStateType => {
     switch (action.type) {
-
+        case addCardData:
+            return {
+                ...state,
+                cardData: [
+                    ...state.cardData,
+                    action.payload
+                ]
+            }
         case setCardData:
             return {
                 ...state,
@@ -85,6 +93,14 @@ const cardReducer = (state = initiallState, action: any): InitiallStateType => {
             return state;
     }
 }
+type addCardDataType = {
+    type: typeof addCardData
+    payload: any
+}
+export const addCardDataAC = (payload: any): addCardDataType =>
+    ({
+        type: addCardData, payload: payload
+    });
 type SetCardDataType = {
     type: typeof setCardData
     payload: Array<CardDataType>
@@ -114,18 +130,18 @@ export const removeBasketItemAC = (id: string): RemoveBasketItemType =>
 
 type FilterByType = {
     type: typeof filterBy
-    payload: string
+    payload: string | Array<string>
 }
-export const filterByAC = (filterValue: string): FilterByType =>
+export const filterByAC = (filterValue: string |  Array<string>): FilterByType =>
     ({
         type: filterBy, payload: filterValue
     });
 
 type SetSearchValueType = {
     type: typeof setSearchValue
-    payload: {value: string, type: string}
+    payload: {value: string | Array<string>, type: string}
 }
-export const setSearchValueAC = (value: string, type: string): SetSearchValueType =>
+export const setSearchValueAC = (value: string | Array<string>, type: string): SetSearchValueType =>
     ({
         type: setSearchValue, payload: {value, type}
     });
@@ -159,6 +175,7 @@ export const removeCatalogItemThunkCreater = (id: string) => {
     }
 }
 export const addOwnCardThunkCreater = (data: any) => {
+    debugger
 
     const payload = {
         title: data.title,
@@ -193,8 +210,9 @@ export const addOwnCardThunkCreater = (data: any) => {
     return async (dispatch: any) => {
         let response = await api.sendDataCard(payload)
         if (response.status === 200) {
+            debugger
             alert("Товар добавлен")
-            dispatch(setCardThunkCreater())
+            dispatch(addCardDataAC(response.data))
         }
     }
 }

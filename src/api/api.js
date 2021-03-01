@@ -35,7 +35,7 @@ export let api = {
         formData.append("classific", data.classific)
         formData.append("start_note", data.start_note)
         formData.append("end_node", data.end_node)
-
+debugger
         return axios.post(`http://localhost:3012/api/new/product`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'

@@ -1,20 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import s from './Profile.module.css'
 import {NavLink, withRouter} from "react-router-dom";
+import {getProfileThunkCreater} from "../../redux/redusers/profile";
+import {useDispatch, useSelector} from "react-redux";
+import {getProfileProduct} from "../../selectors/catalogSelector";
 
-class Profile extends React.Component {
-    componentWillMount() {
-        this.props.getProfile(this.props.match.params.id)
-        debugger
-    }
+const Profile = (props) => {
+    const profileProduct = useSelector(getProfileProduct)
+    const dispatch = useDispatch()
 
-    render() {
-        if (!this.props.profileProduct) return null
+    useEffect(() => {
+        dispatch(getProfileThunkCreater(props.match.params.id))
+    }, [])
+
+        if (!profileProduct) return null
         return (
             <div className={s.profile}>
                 <div className={s.navigation}>
                     <div className={s.title}>
-                        {this.props.profileProduct.model}
+                        {profileProduct.model}
                     </div>
                     <div className={s.back}>
                         <NavLink to = '/catalog'>Назад</NavLink>
@@ -23,10 +27,10 @@ class Profile extends React.Component {
 
                 <div className={s.imageBar}>
                     <div className={s.imageItem}>
-                        <img src={"http://localhost:3012/" + this.props.profileProduct.image} alt=""/>
+                        <img src={"http://localhost:3012/" + profileProduct.image} alt=""/>
                     </div>
                     <div className={s.descriptItem}>
-                        {this.props.profileProduct.descript}
+                        {profileProduct.descript}
                     </div>
                 </div>
                 <div className={s.charactBox}>
@@ -35,15 +39,15 @@ class Profile extends React.Component {
                     </div>
                     <div className={s.characterItem}>
                         <div className={s.overview}>Производитель</div>
-                        <div>{this.props.profileProduct.model}</div>
+                        <div>{profileProduct.model}</div>
                     </div>
                     <div className={s.characterItem}>
                         <div className={s.overview}>Страна</div>
-                        <div>{this.props.profileProduct.country}</div>
+                        <div>{profileProduct.country}</div>
                     </div>
                     <div className={s.characterItem}>
                         <div className={s.overview}>Пол</div>
-                        <div>{this.props.profileProduct.gender}</div>
+                        <div>{profileProduct.gender}</div>
                     </div>
                     <div className={s.characterItem}>
                     <div className={s.overview}>Тип аромата</div>
@@ -51,7 +55,7 @@ class Profile extends React.Component {
                 </div>
                     <div className={s.characterItem}>
                         <div className={s.overview}>Классификация</div>
-                        <div>{this.props.profileProduct.classific}</div>
+                        <div>{profileProduct.classific}</div>
                     </div>
                     <div className={s.characterItem}>
                     <div className={s.overview}>Начальная нота</div>
@@ -63,12 +67,11 @@ class Profile extends React.Component {
                 </div>
                     <div className={s.characterItem}>
                         <div className={s.overview}>Цена</div>
-                        <div>{this.props.profileProduct.price}</div>
+                        <div>{profileProduct.price}</div>
                     </div>
                 </div>
             </div>
         )
-    }
 
 
 }

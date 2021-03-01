@@ -4,11 +4,24 @@ import MenuSlider from "../Menu-slider/MenuSlider";
 import {ShoppingCartOutlined} from "@ant-design/icons";
 import {NavLink} from "react-router-dom";
 import UnlockOutlined from "@ant-design/icons/lib/icons/UnlockOutlined";
+import {useDispatch, useSelector} from "react-redux";
+import {getAuthData} from "../../../selectors/usersSelector";
+import {getBasketData, getOrders} from "../../../selectors/basketSelector";
+import {setAuthDataAC} from "../../../redux/redusers/auth";
 
 const MenuButton = (props) => {
+    const dispatch = useDispatch()
+
+    const authData = useSelector(getAuthData)
+    const orders = useSelector(getOrders)
+    const basketData = useSelector(getBasketData)
+
     const [isOpen, toggleMenu] = useState(false)
     const showMenu = () => {
         toggleMenu(!isOpen)
+    }
+    const logoutUser = () => {
+        dispatch(setAuthDataAC(null))
     }
     return (
         <div className={s.menu}>
@@ -24,23 +37,23 @@ const MenuButton = (props) => {
                 <h3>La Parfumeria</h3>
             </div>
             <div className={s.unlockBox}>
-                {props.authData && props.authData.own === true ? <div className={s.unlock}>
+                {authData && authData.own === true ? <div className={s.unlock}>
                     <NavLink to = {"/own"}>
                         <UnlockOutlined />
                     </NavLink>
-                    {props.orders.length && props.orders.length > 0 ? (
-                        <div className={s.basketStatus}>{props.orders.length}</div>
+                    {orders.length && props.orders.length > 0 ? (
+                        <div className={s.basketStatus}>{orders.length}</div>
                     ): ""}
                 </div> : "" }
             </div>
             <div className={s.menu__basket}>
                 <NavLink to = '/basket'><ShoppingCartOutlined/></NavLink>
-                {props.basketData.length && props.basketData.length > 0 ? (
-                    <div className={s.basketStatus}>{props.basketData.length}</div>
+                {basketData.length && basketData.length > 0 ? (
+                    <div className={s.basketStatus}>{basketData.length}</div>
                 ): ""}
             </div>
-            <MenuSlider basketData = {props.basketData} logoutUser = {props.logoutUser}
-                        authData = {props.authData} isOpen={isOpen}/>
+            <MenuSlider basketData = {basketData} logoutUser = {logoutUser}
+                        authData = {authData} isOpen={isOpen}/>
         </div>
 
     )
